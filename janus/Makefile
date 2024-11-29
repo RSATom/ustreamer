@@ -9,8 +9,8 @@ LDFLAGS ?=
 # =====
 _PLUGIN = libjanus_ustreamer.so
 
-_CFLAGS = -fPIC -MD -c -std=c17 -Wall -Wextra -D_GNU_SOURCE $(shell pkg-config --cflags glib-2.0) $(CFLAGS)
-_LDFLAGS = -shared -lm -pthread -lrt -ljansson -lopus -lasound -lspeexdsp $(shell pkg-config --libs glib-2.0) $(LDFLAGS)
+_CFLAGS = -fPIC -MD -c -std=c17 -Wall -Wextra -Og -g3 -ggdb3 -fno-omit-frame-pointer -fno-optimize-sibling-calls -fsanitize=address -D_GNU_SOURCE $(shell pkg-config --cflags glib-2.0) $(CFLAGS)
+_LDFLAGS = -shared -fsanitize=address -lm -pthread -lrt -ljansson -lopus -lasound -lspeexdsp $(shell pkg-config --libs glib-2.0) $(LDFLAGS)
 
 _SRCS = $(shell ls src/uslibs/*.c src/*.c)
 
